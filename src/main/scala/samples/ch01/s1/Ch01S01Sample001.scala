@@ -1,6 +1,6 @@
 package samples.ch01.s1
 
-object Ch01Sample001 extends App {
+object Ch01S01Sample001 extends App {
 
   val goShoppingUnsafe: Unit = {
     println("Going to the grocery store")

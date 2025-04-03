@@ -4,7 +4,7 @@ import java.util.concurrent.{Executors, ScheduledExecutorService}
 import java.util.concurrent.TimeUnit._
 
 
-object Ch01Sample002 extends App {
+object Ch01S01Sample002 extends App {
 
   val goShoppingUnsafe: Unit = {
     println("Going to the grocery store")
