@@ -30,7 +30,8 @@ object Ch01S03Sample001b extends ZIOAppDefault {
     ZIO.attempt(println(line))
 
   val printFullName =
-  for { n <- fullName
+  for {
+    n <- fullName
     _ <- printLine(n)
   } yield ()
 
