@@ -4,13 +4,13 @@ import zio.{ZIO, ZIOAppDefault}
 
 // 5. Rewrite the following ZIO code that uses flatMap into a for comprehension.
 
-object Question extends ZIOAppDefault {
+object Ch01Exercise5 extends ZIOAppDefault {
   val random = ZIO.attempt(scala.util.Random.
     nextInt(3) + 1)
   def printLine(line: String) = ZIO.attempt(println(line))
   val readLine = ZIO.attempt(scala.io.StdIn.readLine())
 
-  val run = random.flatMap { int =>
+  val example = random.flatMap { int =>
     printLine("Guess a number from 1 to 3:").flatMap { _ =>
       readLine.flatMap { num =>
         if (num == int.toString) printLine("You guessed right!")
@@ -18,13 +18,6 @@ object Question extends ZIOAppDefault {
       }
     }
   }
-}
-
-object Ch01Exercise5 extends ZIOAppDefault {
-  val random = ZIO.attempt(scala.util.Random.
-    nextInt(3) + 1)
-  def printLine(line: String) = ZIO.attempt(println(line))
-  val readLine = ZIO.attempt(scala.io.StdIn.readLine())
 
   val run = for {
     int <- random
