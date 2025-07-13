@@ -1,8 +1,5 @@
 package exercises
 
-import zio.{ZIO, ZIOAppDefault}
-
-// 5. Rewrite the following ZIO code that uses flatMap into a for comprehension.
 
 object Ch01Exercise6 extends App {
   // 6. Implement the zipWith function in terms of the toy model of a ZIO effect. The
@@ -15,7 +12,7 @@ object Ch01Exercise6 extends App {
     self: ZIO[R, E, A],
     that: ZIO[R, E, B]
   )(f: (A, B) => C): ZIO[R, E, C] = {
-    ZIO( r =>
+    ZIO(r =>
       for {
         a <- self.run(r)
         b <- that.run(r)
