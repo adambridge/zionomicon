@@ -1,9 +1,9 @@
 package exercises
 
-import exercises.Ch01Exercise6.zipWith
+import exercises.Ch01Exercise06.zipWith
 
 
-object Ch01Exercise7 extends App {
+object Ch01Exercise07 extends App {
   //  7. Implement the collectAll function in terms of the toy model of a ZIO effect. The
   //  function should return an effect that sequentially collects the results of the specified
   //  collection of effects.

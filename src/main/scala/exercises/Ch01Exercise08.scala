@@ -1,9 +1,9 @@
 package exercises
 
-import exercises.Ch01Exercise7.collectAll
+import exercises.Ch01Exercise07.collectAll
 
 
-object Ch01Exercise8 extends App {
+object Ch01Exercise08 extends App {
   //  8. Implement the foreach function in terms of the toy model of a ZIO effect. The
   //  function should return an effect that sequentially runs the specified function on
   //  every element of the specified collection.

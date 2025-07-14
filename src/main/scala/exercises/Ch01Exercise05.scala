@@ -3,11 +3,10 @@ package exercises
 import zio.{ZIO, ZIOAppDefault}
 
 
-object Ch01Exercise5 extends ZIOAppDefault {
+object Ch01Exercise05 extends ZIOAppDefault {
   // 5. Rewrite the following ZIO code that uses flatMap into a for comprehension.
 
-  val random = ZIO.attempt(scala.util.Random.
-    nextInt(3) + 1)
+  val random = ZIO.attempt(scala.util.Random.nextInt(3) + 1)
   def printLine(line: String) = ZIO.attempt(println(line))
   val readLine = ZIO.attempt(scala.io.StdIn.readLine())
 
