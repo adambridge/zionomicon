@@ -1,5 +1,7 @@
 package exercises
 
+import exercises.Ch01Exercise01.{readFile, readFileZio}
+import exercises.Ch01Exercise02.{writeFile, writeFileZio}
 import zio.ZIO
 
 object Ch01Exercise03 {
@@ -17,24 +19,4 @@ object Ch01Exercise03 {
       .flatMap(lines =>
         writeFileZio(dest, lines)
       )
-
-
-
-  def readFile(file: String): String = {
-    val source = scala.io.Source.fromFile(file)
-
-    try source.getLines().mkString
-    finally source.close()
-  }
-
-  def readFileZio(file: String) = ZIO.attempt(readFile(file))
-
-  def writeFile(file: String, text: String): Unit = {
-    import java.io._
-    val pw = new PrintWriter(new File(file))
-    try pw.write(text)
-    finally pw.close
-  }
-
-  def writeFileZio(file: String, text: String) = ZIO.attempt(writeFile(file, text))
 }
