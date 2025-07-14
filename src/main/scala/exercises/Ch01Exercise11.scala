@@ -19,5 +19,5 @@ object Cat extends ZIOAppDefault {
     for {
       args <- getArgs
       lines <- foreach(args)(readFileZio)
-    } yield (println(lines))
+    } yield println(lines)
 }
