@@ -1,23 +1,22 @@
 package exercises
 
-import Ch01Exercise01.readFileZio
-import zio.ZIOAppArgs.getArgs
-import zio.ZIOAppDefault
-import zio.ZIO.foreach
+import exercises.Ch01Exercise11.eitherToZIO
+import zio.{ZIO, ZIOAppDefault}
 
-object Ch01Exercise10 extends App {
-  // 10. Using the following code as a foundation, write a ZIO application that prints out the
-  // contents of whatever files are passed into the program as command-line arguments.
-  // You should use the function readFileZio that you developed in these exercises, as
-  // well as ZIO.foreach.
+object Ch01Exercise11 extends ZIOAppDefault {
+  // 11. Using ZIO.fail and ZIO.succeed, implement the following function, which
+  // converts an Either into a ZIO effect:
 
-}
+  def eitherToZIO[E, A](either: Either[E, A]): ZIO[Any, E, A] =
+    either match {
+      case Left(e) => ZIO.fail(e)
+      case Right(a) => ZIO.succeed(a)
+    }
 
-
-object Cat extends ZIOAppDefault {
-  def run =
+  val run = {
     for {
-      args <- getArgs
-      lines <- foreach(args)(readFileZio)
-    } yield println(lines)
+      result <- eitherToZIO(incrementUnlessNegative(3))
+    } yield println(s"result: $result")
+  }
 }
+
