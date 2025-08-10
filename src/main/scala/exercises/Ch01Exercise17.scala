@@ -1,35 +1,17 @@
 package exercises
 
-import zio.{ZIO, ZIOAppDefault}
+import zio.{ZIOAppDefault, Console}
 
-import scala.concurrent.{ExecutionContext, Future}
 
 object Ch01Exercise17 extends ZIOAppDefault {
-  // 16. Using ZIO.fromFuture, convert the following code to ZIO:
-
-  trait Query
-  trait Result
-
-  final case class ExampleQuery(query: String) extends Query
-  final case class ExampleResult(result: String) extends Result
-
-  def doQuery(query: Query)(implicit
-    ec: ExecutionContext
-  ): Future[Result] =
-    query match {
-      case ExampleQuery("valid-query") => Future.successful(ExampleResult("result"))
-      case ExampleQuery(_) => Future.failed(new Throwable("query-failed"))
-    }
-
-  def doQueryZio(query: Query): ZIO[Any, Throwable, Result] =
-    ZIO.fromFuture(ec => doQuery(query)(ec))
+  // 17. Using the Console, write a little program that asks the user what their name is and
+  // then prints it out to them with a greeting.
 
   val run = {
     for {
-      result <- doQueryZio(ExampleQuery("valid-query"))
-//      Uncomment the next line to test with an invalid key
-//      result <- doQueryZio(ExampleQuery("invalid-query"))
-    } yield println(s"result: $result")
+      name <- Console.readLine("Hey buddy, what's your name?\n")
+      _ <- Console.printLine(s"Nice to meet you, $name!")
+    } yield ()
   }
 }
 
