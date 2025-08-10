@@ -1,10 +1,6 @@
 package exercises
 
-import exercises.Ch01Exercise13.currentTimeZIO
 import zio.{ZIO, ZIOAppDefault}
-
-import java.lang.Throwable
-import scala.util.Try
 
 object Ch01Exercise14 extends ZIOAppDefault {
   // 14. Using ZIO.async, convert the following asynchronous, callback-based function
@@ -14,18 +10,9 @@ object Ch01Exercise14 extends ZIOAppDefault {
     key: String,
     onSuccess: String => Unit,
     onFailure: Throwable => Unit
-  ): Unit = {
-    // Simulating an asynchronous operation
-    Try {
-      // Simulate fetching value from cache
-      if (key == "validKey") {
-        onSuccess("CachedValue")
-      } else {
-        throw new RuntimeException("Key not found")
-      }
-    }.recover {
-      case e: Throwable => onFailure(e)
-    }
+  ): Unit = key match {
+    case "valid-key" => onSuccess("cached-value")
+    case _ => onFailure(new Throwable("not-found"))
   }
 
   def getCacheValueZio(key: String): ZIO[Any, Throwable, String] =
@@ -39,9 +26,9 @@ object Ch01Exercise14 extends ZIOAppDefault {
 
   val run = {
     for {
-      // result <- getCacheValueZio("validKey")
-      // Uncomment the next line to test with an invalid key
-      result <- getCacheValueZio("invalidKey")
+//      result <- getCacheValueZio("valid-key")
+//      Uncomment the next line to test with an invalid key
+      result <- getCacheValueZio("invalid-key")
     } yield println(s"result: $result")
   }
 }
