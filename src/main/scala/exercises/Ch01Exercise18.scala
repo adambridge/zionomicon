@@ -1,6 +1,6 @@
 package exercises
 
-import zio.{Console, Random, ZIOAppDefault}
+import zio.{Console, Random, ZIO, ZIOAppDefault}
 
 
 object Ch01Exercise18 extends ZIOAppDefault {
@@ -10,9 +10,10 @@ object Ch01Exercise18 extends ZIOAppDefault {
 
   val run = {
     for {
-      number <- Random.nextInt
+      number <- Random.nextIntBetween(1, 4)
       guess <- Console.readLine("What number am I thinking of? 1, 2, or 3\n")
-      _ <- if (number == guess) Console.printLine("Right!") else Console.printLine("Nope!")
+      correct <- ZIO.attempt(number == guess.toInt)
+      _ <- if (correct) Console.printLine("Right!") else Console.printLine("Nope!")
     } yield ()
   }
 }
