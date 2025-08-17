@@ -1,4 +1,4 @@
-package exercises
+package exercises.ch01
 
 import exercises.Ch01Exercise11.eitherToZIO
 import zio.{ZIO, ZIOAppDefault}

@@ -1,4 +1,4 @@
-package exercises
+package exercises.ch01
 
 import zio.{Console, ZIO, ZIOAppDefault}
 import java.io.IOException

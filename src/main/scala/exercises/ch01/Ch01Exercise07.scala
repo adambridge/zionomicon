@@ -1,6 +1,6 @@
-package exercises
+package exercises.ch01
 
-import exercises.Ch01Exercise06.zipWith
+import exercises.ch01.Ch01Exercise06.zipWith
 
 
 object Ch01Exercise07 extends App {

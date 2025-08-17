@@ -1,4 +1,4 @@
-package exercises
+package exercises.ch01
 
 import scala.concurrent.{ExecutionContext, Future}
 import zio.{ZIO, ZIOAppDefault}

@@ -1,7 +1,7 @@
-package exercises
+package exercises.ch01
 
-import exercises.Ch01Exercise01.{readFile, readFileZio}
-import exercises.Ch01Exercise02.{writeFile, writeFileZio}
+import exercises.ch01.Ch01Exercise01.{readFile, readFileZio}
+import exercises.ch01.Ch01Exercise02.{writeFile, writeFileZio}
 import zio.ZIO
 
 object Ch01Exercise03 {
