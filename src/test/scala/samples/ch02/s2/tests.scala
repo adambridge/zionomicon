@@ -8,7 +8,7 @@ import zio.ZIO
 object ExampleSpec2 extends ZIOSpecDefault {
 
   def spec = suite("ExampleSpec")(
-    test("hasSameElement") {
+    test("hasSameElements") {
       assert(List(1, 1, 2, 3))(hasSameElements(List(3, 2, 1, 1)))
     },
     test("fails") {
