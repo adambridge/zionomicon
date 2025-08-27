@@ -1,7 +1,5 @@
 package samples.ch01.s4
 
-import scala.io.StdIn
-
 
 final case class ZIO[-R, +E, +A](
   run: R => Either[E, A]

@@ -1,5 +1,7 @@
 package exercises.ch01
 
+import exercises.{ZIO, doubleUnlessOdd, incrementUnlessNegative}
+
 
 object Ch01Exercise09 extends App {
   //  9. Implement the orElse function in terms of the toy model of a ZIO effect. The

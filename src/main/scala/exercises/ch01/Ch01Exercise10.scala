@@ -1,10 +1,8 @@
 package exercises.ch01
 
-import Ch01Exercise01.readFileZio
-import zio.ZIOAppArgs.getArgs
-import zio.ZIOAppDefault
+import exercises.ch01.Ch01Exercise01.readFileZio
 import zio.ZIO.foreach
-import ch01.Ch01Exercise01
+import zio.ZIOAppDefault
 
 
 object Ch01Exercise10 extends ZIOAppDefault {

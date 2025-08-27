@@ -1,5 +1,6 @@
 package exercises.ch01
 
+import exercises.{ZIO, doubleUnlessOdd, incrementUnlessNegative}
 import exercises.ch01.Ch01Exercise06.zipWith
 
 

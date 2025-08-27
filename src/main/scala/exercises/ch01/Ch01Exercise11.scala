@@ -1,6 +1,6 @@
 package exercises.ch01
 
-import exercises.Ch01Exercise11.eitherToZIO
+import exercises.incrementUnlessNegative
 import zio.{ZIO, ZIOAppDefault}
 
 object Ch01Exercise11 extends ZIOAppDefault {

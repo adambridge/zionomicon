@@ -1,5 +1,6 @@
 package exercises.ch01
 
+import exercises.ZIO
 import exercises.ch01.Ch01Exercise07.collectAll
 
 

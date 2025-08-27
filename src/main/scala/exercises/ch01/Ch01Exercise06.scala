@@ -1,5 +1,6 @@
 package exercises.ch01
 
+import exercises.{ZIO, doubleUnlessOdd, incrementUnlessNegative}
 
 object Ch01Exercise06 extends App {
   // 6. Implement the zipWith function in terms of the toy model of a ZIO effect. The
