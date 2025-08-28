@@ -5,7 +5,7 @@ import zio.test._
 import zio.test.Assertion._
 import zio.{ZIO, durationInt}
 
-object ExampleSpec3 extends ZIOSpecDefault {
+object ExampleSpec03 extends ZIOSpecDefault {
 
   def spec = suite("ExampleSpec3")(
     test("greet says hello to the user") {

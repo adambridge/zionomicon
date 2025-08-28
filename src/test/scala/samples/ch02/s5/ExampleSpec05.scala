@@ -3,7 +3,7 @@ package samples.ch02.s5
 import zio.test._
 import zio.test.Assertion._
 
-object ExampleSpec5 extends ZIOSpecDefault {
+object ExampleSpec05 extends ZIOSpecDefault {
 
   def spec = suite("ExampleSpec")(
     test("integer addition is associative") {

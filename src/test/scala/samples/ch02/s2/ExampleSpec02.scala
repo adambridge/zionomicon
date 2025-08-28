@@ -1,11 +1,11 @@
-package samples.ch02.s1
+package samples.ch02.s2
 
 
 import zio.test._
 import zio.test.Assertion._
 import zio.ZIO
 
-object ExampleSpec2 extends ZIOSpecDefault {
+object ExampleSpec02 extends ZIOSpecDefault {
 
   def spec = suite("ExampleSpec")(
     test("hasSameElements") {

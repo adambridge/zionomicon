@@ -5,7 +5,7 @@ import zio.test.TestAspect._
 import zio.test._
 import zio.ZIO
 
-object ExampleSpec extends ZIOSpecDefault {
+object ExampleSpec04 extends ZIOSpecDefault {
 
   def spec = suite("ExampleSpec")(
     test("this test will be repeated to ensure it is stable") {

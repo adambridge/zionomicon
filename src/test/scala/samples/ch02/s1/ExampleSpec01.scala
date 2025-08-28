@@ -5,7 +5,7 @@ import zio.test._
 import zio.test.Assertion._
 import zio.ZIO
 
-object ExampleSpec extends ZIOSpecDefault {
+object ExampleSpec01 extends ZIOSpecDefault {
 
   def spec = suite("ExampleSpec")(
     test("addition works") {
