@@ -26,4 +26,5 @@ out/
 .bloop/
 .bsp/
 .metals/
+.sdkmanrc
 project/
