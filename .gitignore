@@ -23,5 +23,7 @@ out/
 .DS_Store
 
 ### Scala ###
-.bsp/
 .bloop/
+.bsp/
+.metals/
+project/
