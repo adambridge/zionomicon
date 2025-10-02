@@ -10,7 +10,8 @@ object Cache extends ZIOAppDefault {
 
   def store(key: String, value: String, expireMillis: Int) = {
     for {
-      _ <- Console.printLine(s"${Clock.currentTime(TimeUnit.MILLISECONDS)} Storing $key = $value")
+      time <- Clock.currentTime(TimeUnit.MILLISECONDS)
+      _ <- Console.printLine(s"${time} Storing $key = $value")
       _ <- ZIO.attempt {cache = cache.updated(key, value)}
       _ <- ZIO.attempt {cache = cache.removed(key)}.delay(expireMillis.millis)
     } yield ()
@@ -18,8 +19,9 @@ object Cache extends ZIOAppDefault {
 
   def retrieve(key: String) = {
     for {
+      time <- Clock.currentTime(TimeUnit.MILLISECONDS)
       value <- ZIO.attempt(cache.get(key))
-      _ <- Console.printLine(s"${Clock.currentTime(TimeUnit.MILLISECONDS)} Retrieved $key: $value")
+      _ <- Console.printLine(s"${time} Retrieved $key: $value")
     } yield ()
   }
 
