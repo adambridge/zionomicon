@@ -6,31 +6,51 @@ import zio.{Clock, Console, ZIO, ZIOAppDefault, durationInt}
 import java.util.concurrent.TimeUnit
 
 object Cache extends ZIOAppDefault {
-  private var cache: Map[String, String] = Map()
+  private var cache: Map[String, (String, Long)] =
+    Map() // key: String -> (value: String,  expiry, Int)
 
-  def store(key: String, value: String, expireMillis: Int) = {
+  def store(key: String, value: String, expireMillis: Long) = {
     for {
-      time <- Clock.currentTime(TimeUnit.MILLISECONDS)
-      _ <- Console.printLine(s"${time} Storing $key = $value")
-      _ <- ZIO.attempt {cache = cache.updated(key, value)}
-      _ <- ZIO.attempt {cache = cache.removed(key)}.delay(expireMillis.millis)
+      now <- Clock.currentTime(TimeUnit.MILLISECONDS)
+      _ <- ZIO.attempt {
+        cache = cache.filter { case (k, (v, exp)) => exp > now }
+      }
+      _ <- Console.printLine(
+        s"$now Storing $key = $value for $expireMillis ms"
+      )
+      _ <- ZIO.attempt {
+        cache = cache.updated(key, (value, now + expireMillis))
+      }
     } yield ()
   }
 
   def retrieve(key: String) = {
     for {
-      time <- Clock.currentTime(TimeUnit.MILLISECONDS)
-      value <- ZIO.attempt(cache.get(key))
-      _ <- Console.printLine(s"${time} Retrieved $key: $value")
-    } yield ()
+      now <- Clock.currentTime(TimeUnit.MILLISECONDS)
+      _ <- ZIO.attempt {
+        cache = cache.filter { case (k, (v, exp)) => exp > now }
+      }
+      result <- ZIO.attempt(cache.get(key))
+      _ <- {
+        result match {
+          case Some((value, expiry)) =>
+            Console.printLine(
+              s"$now Retrieved $key = $value (${expiry - now} ms remaining)"
+            )
+          case None => Console.printLine(s"$now Key $key not found")
+        }
+
+      }
+    } yield result.map(t => t._1)
   }
 
   def run = {
     for {
-      _ <- store("a", "apple", 10)
-      _ <- store("b", "banana", 1000).delay(50.millis)
-      a <- retrieve("a").delay(150.millis)
-      b <- retrieve("b").delay(250.millis)
+      _ <- store("a", "apple", 100)
+      _ <- store("b", "banana", 10000)
+      _ <- ZIO.attempt().delay(500.millis)
+      a <- retrieve("a")
+      b <- retrieve("b")
       _ <- Console.printLine(s"a: $a, b: $b")
     } yield ()
   }
