@@ -15,9 +15,6 @@ object Cache extends ZIOAppDefault {
       _ <- ZIO.attempt {
         cache = cache.filter { case (k, (v, exp)) => exp > now }
       }
-      _ <- Console.printLine(
-        s"$now Storing $key = $value for $expireMillis ms"
-      )
       _ <- ZIO.attempt {
         cache = cache.updated(key, (value, now + expireMillis))
       }
@@ -31,16 +28,6 @@ object Cache extends ZIOAppDefault {
         cache = cache.filter { case (k, (v, exp)) => exp > now }
       }
       result <- ZIO.attempt(cache.get(key))
-      _ <- {
-        result match {
-          case Some((value, expiry)) =>
-            Console.printLine(
-              s"$now Retrieved $key = $value (${expiry - now} ms remaining)"
-            )
-          case None => Console.printLine(s"$now Key $key not found")
-        }
-
-      }
     } yield result.map(t => t._1)
   }
 
