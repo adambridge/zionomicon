@@ -1,11 +1,10 @@
 package exercises.ch02.ex2
 
-import exercises.ch02.ex2.Cache.cache
 import zio.{Clock, Console, ZIO, ZIOAppDefault, durationInt}
 
 import java.util.concurrent.TimeUnit
 
-object Cache extends ZIOAppDefault {
+class Cache {
   private var cache: Map[String, (String, Long)] =
     Map() // key: String -> (value: String,  expiry, Int)
 
@@ -30,14 +29,17 @@ object Cache extends ZIOAppDefault {
       result <- ZIO.attempt(cache.get(key))
     } yield result.map(t => t._1)
   }
+}
 
+object Cache extends ZIOAppDefault {
   def run = {
+    val cache = new Cache
     for {
-      _ <- store("a", "apple", 100)
-      _ <- store("b", "banana", 10000)
+      _ <- cache.store("a", "apple", 100)
+      _ <- cache.store("b", "banana", 10000)
       _ <- ZIO.attempt().delay(500.millis)
-      a <- retrieve("a")
-      b <- retrieve("b")
+      a <- cache.retrieve("a")
+      b <- cache.retrieve("b")
       _ <- Console.printLine(s"a: $a, b: $b")
     } yield ()
   }
