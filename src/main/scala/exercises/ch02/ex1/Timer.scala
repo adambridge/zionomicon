@@ -1,15 +1,14 @@
 package exercises.ch02.ex1
 
-import zio.{Console, ZIO, ZIOAppDefault, durationInt}
+import zio.{Console, IO, ZIOAppDefault, durationInt}
 
-import java.time.LocalDateTime
+import java.io.IOException
 
 object Timer extends ZIOAppDefault {
-  def countdown =
-    ZIO.foreach(1 to 5) { n =>
-      Console.printLine(s"$n").delay(1.seconds)
-    } // Spurious error "No implicits found for parameter bf: zio.BuildFrom ..." ?
+  def countdown(from: Int): IO[IOException, Unit] = {
+      if (from > 0 ) Console.printLine(s"$from").delay(1.seconds) *> countdown(from - 1)
+      else Console.printLine(s"0")
+  }
 
-
-  def run = countdown
+  def run: IO[IOException, Unit] = countdown(10)
 }
