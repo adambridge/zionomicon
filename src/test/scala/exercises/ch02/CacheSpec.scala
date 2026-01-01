@@ -1,6 +1,5 @@
 package exercises.ch02
 
-import exercises.ch02.ex2.Cache
 import zio.durationInt
 import zio.test.Assertion.equalTo
 import zio.test.{TestClock, ZIOSpecDefault, assert}

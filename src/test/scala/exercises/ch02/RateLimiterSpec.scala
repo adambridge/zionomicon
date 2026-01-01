@@ -1,6 +1,5 @@
 package exercises.ch02
 
-import exercises.ch02.ex3.RateLimiter
 import zio.test.Assertion.equalTo
 import zio.test.{Spec, TestClock, ZIOSpecDefault, assert, assertCompletes}
 import zio.{ZIO, durationInt}

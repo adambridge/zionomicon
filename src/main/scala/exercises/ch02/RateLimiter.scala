@@ -1,4 +1,4 @@
-package exercises.ch02.ex3
+package exercises.ch02
 
 import zio.{Console, ZIO, ZIOAppDefault, durationInt}
 

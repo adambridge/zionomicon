@@ -1,4 +1,4 @@
-package exercises.ch02.ex4
+package exercises.ch02
 
 import zio.{Console, Task, ZIO, ZIOAppDefault}
 
