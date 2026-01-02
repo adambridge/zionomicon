@@ -10,7 +10,8 @@ lazy val hello = project
     libraryDependencies ++= Seq(
       "org.scala-lang" %% "toolkit-test" % "0.1.7" % Test,
       "dev.zio" %% "zio" % zioVersion,
-      "dev.zio" %% "zio-test" % zioVersion,
-      "dev.zio" %% "zio-test-sbt" % zioVersion
-    )
+      "dev.zio" %% "zio-test" % zioVersion % Test,
+      "dev.zio" %% "zio-test-sbt" % zioVersion % Test
+    ),
+    testFrameworks += new TestFramework("zio.test.sbt.ZTestFramework")
   )
